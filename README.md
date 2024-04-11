@@ -8,7 +8,5 @@ More info about the simulator structure and main functionalities is available in
 L. Lusvarghi, B. Coll-Perales, J. Gozalvez, and M. L. Merani, "Link Level Analysis of NR V2X Sidelink Communications," submitted to IEEE Internet of Things Journal. 
 ```
 
-For further information and/or technical enquiries, please contact: 
-- llusvarghi@umh.es
-- bcoll@umh.es
+For further information and/or technical enquiries, please contact Luca Lusvarghi (llusvarghi@umh.es) and Baldomero Coll-Perales (bcoll@umh.es)
 
