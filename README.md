@@ -3,7 +3,7 @@ This repo contains the source code of the MATLAB-based link-level simulator of N
 
 The simulator has been developed at the [UWICORE](https://uwicore.umh.es/) laboratory of the Universidad Miguel Hernandez de Elche (Spain) and is protected under the GNU GPLv3 license. 
 
-More info about the simulator structure and main functionalities is available in this paper (add link). If you use this code or the link-level dataset, please cite our work:
+More info about the simulator structure and main functionalities is available in this paper (**TODO:** add link). If you use this code or the link-level dataset, please cite our work:
 ```
 L. Lusvarghi, B. Coll-Perales, J. Gozalvez, and M. L. Merani, "Link Level Analysis of NR V2X Sidelink Communications," submitted to IEEE Internet of Things Journal. 
 ```
