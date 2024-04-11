@@ -1,0 +1,82 @@
+function plotSLgrid(grid,PSSCHind,DMRSind,PSCCHind,AGCind,GuardInd)     % Reverse the index order and plot the resource grid
+
+    gridSize = size(grid);
+    numSC = gridSize(1); % number of subcarriers is the number of rows in the grid
+
+
+    % AGC indices
+    AGCind_plot = zeros(numel(AGCind),1);
+    for i = 1:numel(AGCind)
+        index = cast(AGCind(i),'double');
+        OFDMsymbol_index = floor((index-1)/numSC);
+        SC_start = OFDMsymbol_index*numSC + 1;
+        SC_stop = SC_start + numSC - 1;
+        AGCind_plot(i) = (SC_start - 1) + SC_stop + 1 - index;
+    end
+    AGCind_plot = sort(AGCind_plot);
+    AGCind_plot = uint32(AGCind_plot);
+
+    % Guard symbol indices
+    GuardInd_plot = zeros(numel(GuardInd),1);
+    for i = 1:numel(GuardInd)
+        index = cast(GuardInd(i),'double');
+        OFDMsymbol_index = floor((index-1)/numSC);
+        SC_start = OFDMsymbol_index*numSC + 1;
+        SC_stop = SC_start + numSC - 1;
+        GuardInd_plot(i) = (SC_start - 1) + SC_stop + 1 - index;
+    end
+    GuardInd_plot = sort(GuardInd_plot);
+    GuardInd_plot = uint32(GuardInd_plot);
+
+    % PSCCH indices
+    PSCCHind_plot = zeros(numel(PSCCHind),1);
+    for i = 1:numel(PSCCHind)
+        index = cast(PSCCHind(i),'double');
+        OFDMsymbol_index = floor((index-1)/numSC);
+        SC_start = OFDMsymbol_index*numSC + 1;
+        SC_stop = SC_start + numSC - 1;
+        PSCCHind_plot(i) = (SC_start - 1) + SC_stop + 1 - index;
+    end
+    PSCCHind_plot = sort(PSCCHind_plot);
+    PSCCHind_plot = uint32(PSCCHind_plot);
+
+    % DMRS indices
+    DMRSind_plot = zeros(numel(DMRSind),1);
+    for i = 1:numel(DMRSind)
+        index = cast(DMRSind(i),'double');
+        OFDMsymbol_index = floor((index-1)/numSC);
+        SC_start = OFDMsymbol_index*numSC + 1;
+        SC_stop = SC_start + numSC - 1;
+        DMRSind_plot(i) = (SC_start - 1) + SC_stop + 1 - index;
+    end
+    DMRSind_plot = sort(DMRSind_plot);
+    DMRSind_plot = uint32(DMRSind_plot);
+
+    % PSSCH indices
+    PSSCHind_plot = zeros(numel(PSSCHind),1);
+    for i = 1:numel(PSSCHind)
+        index = cast(PSSCHind(i),'double');
+        OFDMsymbol_index = floor((index-1)/numSC);
+        SC_start = OFDMsymbol_index*numSC + 1;
+        SC_stop = SC_start + numSC - 1;
+        PSSCHind_plot(i) = (SC_start - 1) + SC_stop + 1 - index;
+    end
+    PSSCHind_plot = sort(PSSCHind_plot);
+    PSSCHind_plot = uint32(PSSCHind_plot);
+
+    % Correct indexing order
+    figure()
+    plotGrid = grid;
+    plotGrid(AGCind_plot) = 0;
+    plotGrid(GuardInd_plot) = 0;
+    plotGrid(PSSCHind_plot) = 2;
+    plotGrid(DMRSind_plot) = 3;
+    plotGrid(PSCCHind_plot) = 4;
+
+    imagesc(abs(plotGrid))    
+end
+
+function ou = revertIndices(inputInd)
+
+
+end

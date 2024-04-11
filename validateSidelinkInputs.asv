@@ -1,0 +1,40 @@
+function validateSidelinkInputs(simParamsPSSCH, simParamsSCI1, simParamsSCI2)
+
+    % Check the number of sidelink symbols
+    % see sl-TimeResourcePSCCH in TS 38.331
+    assert((simParamsSCI1.TimeResourcePSCCH == 2) || (simParamsSCI1.TimeResourcePSCCH == 3),...
+        "Invalid input for simulation parameter: SCI1.TimeResourcePSCCH");
+
+    % Check the number of sidelink symbols
+    % see sl-FreqResourcePSCCH in TS 38.331    
+    assert((simParamsSCI1.FreqResourcePSCCH == 10) || (simParamsSCI1.FreqResourcePSCCH == 12) || ...
+        (simParamsSCI1.FreqResourcePSCCH == 15) || (simParamsSCI1.FreqResourcePSCCH == 20) || (simParamsSCI1.FreqResourcePSCCH == 25),...
+        "Invalid input for simulation parameter: SCI1.TimeResourcePSCCH");    
+
+    % Check the 2nd-stage SCI format
+    assert(strcmp(simParamsSCI2.format,"2A") || strcmp(simParamsSCI2.format,"2B"), "Invalid 2nd-stage SCI format");
+
+    % Check the number of sidelink symbols
+    % see sl-LengthSymbols in TS 38.331
+    assert((simParamsPSSCH.LengthSymbols >= 7) && (simParamsPSSCH.LengthSymbols <= 14), "Invalid number of symbols per slot")
+
+    % Check the subchannel size
+    % see sl-SubchannelSize in TS 38.331
+    assert((simParamsPSSCH.SubchannelSize == 10) || (simParamsPSSCH.SubchannelSize == 12) || (simParamsPSSCH.SubchannelSize == 15) || ...
+        (simParamsPSSCH.SubchannelSize == 20) || (simParamsPSSCH.SubchannelSize == 25) || (simParamsPSSCH.SubchannelSize == 50) || ...
+        (simParamsPSSCH.SubchannelSize == 75) || (simParamsPSSCH.SubchannelSize == 100), "Invalid subchannel size")
+
+    % Check that the subchannel size is larger
+    simParamsSCI1.FreqResourcePSCCH
+
+
+    % Check the DMRS pattern
+    % see Table 8.4.1.1.2-1 in TS 38.331
+    if (simParamsPSSCH.LengthSymbols == 6) || (simParamsPSSCH.LengthSymbols == 7) || (simParamsPSSCH.LengthSymbols == 8)
+       assert (simParamsPSSCH.DMRSLength == 2, "Invalid number of PSSCH DM-RS")
+    elseif (simParamsPSSCH.LengthSymbols == 9) || (simParamsPSSCH.LengthSymbols == 10)
+       assert ((simParamsPSSCH.DMRSLength == 2) || (simParamsPSSCH.DMRSLength == 3), "Invalid number of PSSCH DM-RS")
+    else
+       assert (simParamsPSSCH.DMRSLength <= 4, "Invalid number of PSSCH DM-RS")
+    end
+end
