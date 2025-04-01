@@ -134,7 +134,7 @@ function [PSSCHind,DMRS_PSSCHind,PSCCHind,DMRS_PSCCHind,AGCind,GuardInd,DMRS_Cou
 
     for PSCCHsymbol_index = PSCCHsymbol_index_start:PSCCHsymbol_index_stop  
         if ismember(PSCCHsymbol_index,DMRSpattern)
-            assert(PSSCHparams.SubchannelSize >= 20,...
+            assert(PSSCHparams.SubchannelSize*PSSCHparams.NumSubchannels >= 20,...
                 "Mapping of PSSCH DMRS and PSCCH to the same OFDM symbol is allowed only if the subchannel size is >= 20 PRBs")
         end        
     end
